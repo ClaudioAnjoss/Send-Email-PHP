@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 require '../PHPMailer/Exception.php';
 require '../PHPMailer/OAuth.php';
@@ -42,7 +42,7 @@ $mensagem->__set('assunto', $_POST['assunto']);
 $mensagem->__set('mensagem', $_POST['mensagem']);
 
 if (!$mensagem->validarMensagem()) {
-    echo 'script interrompido por campos vazios';
+    header('location: ../index.php?campo=vazio');
     die();
 }
 
@@ -62,8 +62,8 @@ try {
 
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'estudar2102@gmail.com';
-    $mail->Password   = 'estudos2102!';
+    $mail->Username   = 'insira aqui um email valido';
+    $mail->Password   = 'insira a senha do email';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port       = 465;
 
@@ -88,29 +88,46 @@ try {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Mail Send</title>
+	<meta charset="utf-8" />
+	<title>App Mail Send</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="../css/style.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
-<body>
-    <div class="container">
-        <?php if($mensagem->status == 1) { ?>
-            <h1>Sucesso ao enviar email</h1>
-        <?php } ?>
+<body id="dialog">
 
-        <?php if($mensagem->status == 0) { ?>
-            <h1>Falha ao enviar email</h1>
-            <p><?php echo $mensagem->descricao; ?></p>
-        <?php } ?>
-    </div>
+	<div id="email" class="container">
+
+		<div class="py-3 text-center">
+			<img class="d-block mx-auto mb-2" src="../img/logo.png" alt="" width="72" height="72">
+			<h2>Send Mail</h2>
+			<p class="lead">Seu app de envio de e-mails particular!</p>
+		</div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <?php if($mensagem->status == 1) { ?>
+                    <h1 class="display-4 text-success">Sucesso!</h1>
+                    <p class="lead">O e-mail foi enviado com sucesso!</p>
+                    <a href="../index.php" class="btn btn-success">Voltar para pagína inicial</a>
+                <?php } ?>
+                <?php if($mensagem->status == 0) { ?>
+                    <h1 class="display-4 text-danger">Ops!!!</h1>
+                    <p class="lead">Ocorreu um erro ao enviar o email!</p>
+                    <p><?php echo $mensagem->descricao; ?></p>
+                    <a href="../index.php" class="btn btn-danger">Voltar e corrigir</a>
+                <?php } ?>
+            </div>
+        </div>
+
+	</div>
+
 </body>
 
 </html>

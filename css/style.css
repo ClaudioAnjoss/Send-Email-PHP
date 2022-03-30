@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(../img/bg.png) no-repeat;
+    background-size: 600px;
+    background-position: 99% 167px;
+}
+
+#dialog {
+    background: url(../img/bg-dialog.png) no-repeat;
+    background-size: 600px;
+    background-position: 99% 167px;
+}
+
+#email .input-group-text {
+    background-color: #0069D9;   
+    color: white;
+    border: 1px solid #0069D9;
+}
