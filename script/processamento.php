@@ -100,7 +100,7 @@ try {
 
 </head>
 
-<body id="dialog">
+<body class="" id="dialog" >
 
 	<div id="email" class="container">
 
@@ -110,7 +110,7 @@ try {
 			<p class="lead">Seu app de envio de e-mails particular!</p>
 		</div>
         
-        <div class="row">
+        <div class="row flipInX">
             <div class="col-md-8">
                 <?php if($mensagem->status == 1) { ?>
                     <h1 class="display-4 text-success">Sucesso!</h1>

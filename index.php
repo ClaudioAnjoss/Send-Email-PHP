@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body class="zoomIn">
 
 	<div id="email" class="container">
 
